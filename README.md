@@ -1,24 +1,32 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## About
 
-Things you may want to cover:
+This is a training application for the [Rails Architect MasterClass](https://arkency.com/masterclass/).
 
-* Ruby version
+It is an extremely limited tool for personal quarterly OKR (objectives and key results) management.
 
-* System dependencies
+Demo at: https://agnieszka-okr-tracker.herokuapp.com/
 
-* Configuration
+Requirements:
+- ruby 2.6.3
+- PostgreSQL 11
 
-* Database creation
+Set up:
+`rake db:create db:migrate`
 
-* Database initialization
+Run application:
+`rails s`
 
-* How to run the test suite
+Run tests:
+`rspec spec`
 
-* Services (job queues, cache servers, search engines, etc.)
+## CHANGELOG
 
-* Deployment instructions
+Week 3:
 
-* ...
+- Bounded context: [setting objectives](setting_objectives)
+  
+  Adding quarterly objectives and key results. Updating and deleting might come later :)
+- Aggregate: [Objective](setting_objectives/lib/objective.rb) (objective + key results)
+- Value object: [Quarter](setting_objectives/lib/quarter.rb)
