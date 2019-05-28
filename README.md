@@ -23,10 +23,11 @@ Run tests:
 
 ## CHANGELOG
 
-Week 3:
+Week 3 homework:
 
 - Bounded context: [setting objectives](setting_objectives)
   
   Adding quarterly objectives and key results. Updating and deleting might come later :)
 - Aggregate: [Objective](setting_objectives/lib/setting_objectives/objective.rb) (objective + key results)
 - Value object: [Quarter](setting_objectives/lib/setting_objectives/quarter.rb)
+- Read models: [Objective](app/read_models/objective.rb) and [KeyResult](app/read_models/key_result.rb)
