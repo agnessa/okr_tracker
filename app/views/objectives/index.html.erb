@@ -25,27 +25,43 @@
   </div>
 </div>
 
-<% @objectives.each do |objective| %>
+<% @objectives.each.with_index do |objective, o_idx| %>
   <div class="card shadow mb-5 rounded">
     <div class="card-body">
       <h5 class="card-title">
         <small class="text-muted">Objective:</small>
         <%= objective.title %>
       </h5>
-
+      <div class="progress mb-5">
+        <div class="progress-bar" role="progressbar"
+          style="width: <%= score_as_percentage(objective.score) %>%;"
+          aria-valuenow="<%= score_as_percentage(objective.score) %>"
+          aria-valuemin="0" aria-valuemax="100">
+          <%= score_as_percentage(objective.score) %>%
+        </div>
+      </div>
       <% if objective.key_results.any? %>
         <p class="text-muted">Key results:</small>
         <div class="ml-2">
           <ul>
-            <% objective.key_results.each do |key_result| %>
-              <li><%= key_result.title %></li>
+            <% objective.key_results.each.with_index do |key_result, kr_idx| %>
+              <li>
+                <%= key_result.title %>
+                <small class="text-muted">| SCORE: <span id="output_<%= o_idx %>_<%= kr_idx %>"><%= score_as_percentage(key_result.score) %></span>%</small>
+                <%= form_with(url: update_score_objective_key_result_url(objective, key_result), class: 'form-inline') do |f| %>
+                  <div class="form-group custom-control-inline">
+                    <label for="input_<%= key_result.id %>" class="sr-only">Score:</label>
+                    <input type="range" class="custom-range" min="0" max="100" step="5" name="score" id="input_<%= o_idx %>_<%= kr_idx %>" value="<%= score_as_percentage(key_result.score) %>" oninput="output_<%= o_idx %>_<%= kr_idx %>.innerHTML = this.value; this.form.submit()">
+                  </div>
+                <% end %>
+              </li>
             <% end %>
           </ul>
         </div>
       <% end %>
 
       <div>
-        <%= form_with(url: objective_key_results_path(objective_id: objective.uid)) do |f| %>
+        <%= form_with(url: objective_key_results_path(objective_id: objective.id)) do |f| %>
           <div class="form-group row">
             <div class="col-sm-10">
               <%= f.text_field :title, class: 'form-control', placeholder: 'Something measurable, like "My blog was shared 5 times"' %>

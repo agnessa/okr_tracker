@@ -17,5 +17,10 @@ module OkrTracker
     # the framework and any gems in your application.
     config.paths.add 'lib',          eager_load: true
     config.paths.add 'setting_objectives/lib', eager_load: true
+    config.paths.add 'scoring_objectives/lib', eager_load: true
+
+    config.generators do |g|
+      g.orm :active_record, primary_key_type: :uuid
+    end
   end
 end

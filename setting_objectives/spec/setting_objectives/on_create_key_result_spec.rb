@@ -1,14 +1,16 @@
 RSpec.describe SettingObjectives::OnCreateKeyResult do
   let(:user_id) { 1 }
-  let(:aggregate_id) { SecureRandom.uuid }
+  let(:objective_id) { SecureRandom.uuid }
+  let(:key_result_id) { SecureRandom.uuid }
   let(:key_result_attributes) {
     {
-      objective_id: aggregate_id,
+      key_result_id: key_result_id,
+      objective_id: objective_id,
       title: 'test'
     }
   }
-  it 'creates an order' do
-    stream = "SettingObjectives::Objective$#{aggregate_id}"
+  it 'creates an objective' do
+    stream = "SettingObjectives::Objective$#{objective_id}"
     arrange(stream, [])
     created = act(
       stream,

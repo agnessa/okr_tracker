@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :objectives, only: [:index, :create] do
-    resources :key_results, only: [:create]
+    resources :key_results, only: [:create] do
+      post :update_score, on: :member
+    end
   end
   mount RailsEventStore::Browser => '/res' if Rails.env.development?
   root 'objectives#index'

@@ -20,8 +20,10 @@ module SettingObjectives
       )
     end
 
-    def create_key_result(title)
-      apply KeyResultCreated.new(data: {objective_id: @id, title: title})
+    def create_key_result(key_result_id, title)
+      apply KeyResultCreated.new(
+        data: {objective_id: @id, key_result_id: key_result_id, title: title}
+      )
     end
 
     on ObjectiveCreated do |event|
@@ -31,8 +33,9 @@ module SettingObjectives
     end
 
     on KeyResultCreated do |event|
+      key_result_id = event.data[:key_result_id]
       title = event.data[:title]
-      key_result = KeyResult.new(title)
+      key_result = SettingObjectives::KeyResult.new(key_result_id, title)
       @key_results << key_result
     end
   end

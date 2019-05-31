@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_21_221654) do
+ActiveRecord::Schema.define(version: 2019_06_05_220358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -35,20 +35,21 @@ ActiveRecord::Schema.define(version: 2019_05_21_221654) do
     t.index ["stream", "position"], name: "index_event_store_events_in_streams_on_stream_and_position", unique: true
   end
 
-  create_table "key_results", force: :cascade do |t|
+  create_table "key_results", id: :uuid, default: nil, force: :cascade do |t|
     t.string "objective_id"
     t.text "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "score", precision: 5, scale: 4, default: "0.0", null: false
   end
 
-  create_table "objectives", force: :cascade do |t|
-    t.string "uid"
+  create_table "objectives", id: :uuid, default: nil, force: :cascade do |t|
     t.text "title"
     t.integer "user_id"
     t.date "quarter_start_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "score", precision: 5, scale: 4, default: "0.0", null: false
   end
 
 end
