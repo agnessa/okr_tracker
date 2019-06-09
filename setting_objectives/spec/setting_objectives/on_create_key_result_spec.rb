@@ -10,7 +10,7 @@ RSpec.describe SettingObjectives::OnCreateKeyResult do
     }
   }
   it 'creates an objective' do
-    stream = "SettingObjectives::Objective$#{objective_id}"
+    stream = "SettingObjectives::KeyResult$#{key_result_id}"
     arrange(stream, [])
     created = act(
       stream,

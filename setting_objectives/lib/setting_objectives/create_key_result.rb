@@ -4,6 +4,6 @@ module SettingObjectives
     attribute :objective_id, Types::UUID
     attribute :title, String
 
-    alias :aggregate_id :objective_id
+    alias :aggregate_id :key_result_id
   end
 end

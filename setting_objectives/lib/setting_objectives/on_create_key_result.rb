@@ -3,8 +3,8 @@ module SettingObjectives
     include CommandHandler
 
     def call(command)
-      with_aggregate(Objective, command.aggregate_id) do |objective|
-        objective.create_key_result(command.key_result_id, command.title)
+      with_aggregate(SettingObjectives::KeyResult, command.aggregate_id) do |key_result|
+        key_result.create(command.objective_id, command.title)
       end
     end
   end

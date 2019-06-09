@@ -3,7 +3,7 @@ module SettingObjectives
     include CommandHandler
 
     def call(command)
-      with_aggregate(Objective, command.aggregate_id) do |objective|
+      with_aggregate(SettingObjectives::Objective, command.aggregate_id) do |objective|
         objective.create(
           command.title, command.quarter_start_date, command.user_id
         )
