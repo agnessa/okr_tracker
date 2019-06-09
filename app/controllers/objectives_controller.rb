@@ -16,7 +16,6 @@ class ObjectivesController < ApplicationController
     }
     cmd = SettingObjectives::CreateObjective.new(cmd_params)
     command_bus.(cmd)
-    @objective = Objective.find_by_id(cmd.objective_id)
     redirect_to objectives_path, notice: 'Objective created.'
   end
 
